@@ -8,8 +8,8 @@ from slackclient import SlackClient
 
 class Billy:
 
-    def __init__(self):
-        self.client = SlackClient(os.environ.get('SLACK_BOT_TOKEN'))
+    def __init__(self, token=None):
+        self.client = SlackClient(os.environ.get('SLACK_BOT_TOKEN')) if not token else token
 
     def send_slack_message(self, channel, text):
         res = self.client.api_call("chat.postMessage", channel=channel, text=text, as_user=True)
